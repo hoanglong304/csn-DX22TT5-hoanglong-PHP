@@ -39,16 +39,10 @@
 
 ## 🗂️ Tiến độ thực hiện
 
-| Tuần | Nội dung đã làm | Link báo cáo |
-|------|------------------|--------------|
-| Tuần 1 |  
-- Tìm hiểu ngôn ngữ PHP, MySQL và các công cụ webserver cục bộ như XAMPP để phát triển website trên localhost  
-- Khảo sát yêu cầu người dùng, mô tả bài toán về hệ thống bán giày trực tuyến  
-- Phân tích hệ thống và đề xuất mô hình ở mức khái niệm và xử lý: Use Case, ERD  
-- Xác định các chức năng cơ bản: quản lý sản phẩm, giỏ hàng, đặt hàng/thanh toán, thống kê  
-- Thiết kế giao diện bằng HTML, CSS, JavaScript (có thể kết hợp Bootstrap)  
-- Cấu hình môi trường lập trình PHP + MySQL, khởi tạo cấu trúc thư mục dự án | [Xem tại đây](progress-report/week01.txt) |
----
+| Tuần   | Nội dung đã làm | Link báo cáo |
+|--------|------------------|--------------|
+| Tuần 1 | Tìm hiểu ngôn ngữ PHP, MySQL và công cụ webserver cục bộ như XAMPP để phát triển website trên localhost.<br>Khảo sát yêu cầu người dùng, mô tả bài toán về hệ thống bán giày trực tuyến.<br>Phân tích hệ thống và đề xuất mô hình ở mức khái niệm và xử lý: Use Case, ERD.<br>Xác định các chức năng cơ bản: quản lý sản phẩm, giỏ hàng, đặt hàng/thanh toán, thống kê.<br>Thiết kế giao diện bằng HTML, CSS, JavaScript (kết hợp Bootstrap).<br>Cấu hình môi trường lập trình PHP + MySQL, khởi tạo cấu trúc thư mục dự án. | [Xem tại đây](progress-report/week01.txt) |
+
 
 ## 🧪 Hướng dẫn cài đặt và chạy thử
 
