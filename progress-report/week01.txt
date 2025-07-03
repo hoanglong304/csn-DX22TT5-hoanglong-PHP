@@ -1,0 +1,58 @@
+# BÁO CÁO TIẾN ĐỘ - TUẦN 01
+
+## Thông tin chung
+- **Họ tên sinh viên:** Hoàng Long  
+- **Lớp:** DX22TT5  
+- **Tên đồ án:** Xây dựng website bán giày  
+- **Tuần:** 01 (Từ ngày 27/06/2025 đến 03/07/2025)
+
+---
+
+## Nội dung công việc đã thực hiện
+
+### 1. Tìm hiểu công nghệ nền tảng
+- Tìm hiểu ngôn ngữ lập trình **PHP** và cơ chế hoạt động của mô hình lập trình phía server.
+- Tìm hiểu hệ quản trị cơ sở dữ liệu **MySQL**, cách tạo cơ sở dữ liệu và thực hiện truy vấn.
+- Cài đặt và cấu hình **XAMPP** để chạy webserver Apache và MySQL trên môi trường **localhost**.
+- Tìm hiểu cách sử dụng **phpMyAdmin** để quản lý và thao tác cơ sở dữ liệu trực quan.
+
+---
+
+### 2. Khảo sát yêu cầu và phân tích hệ thống
+- Xác định các chức năng cơ bản của website bán giày:
+  - Quản lý sản phẩm (hiển thị, thêm, sửa, xóa)
+  - Giỏ hàng, đặt hàng và quản lý đơn hàng
+  - Đăng ký, đăng nhập và phân quyền người dùng
+  - Thống kê doanh thu và kho hàng
+- Mô tả sơ bộ luồng hoạt động từ phía người dùng và quản trị viên.
+- Phân tích chức năng và xây dựng **Use Case Diagram** cho hệ thống.
+
+---
+
+### 3. Thiết kế cơ sở dữ liệu
+- Xác định các bảng chính: `products`, `categories`, `customers`, `orders`, `order_details`, `users`.
+- Thiết kế sơ đồ **ERD (Entity Relationship Diagram)** thể hiện quan hệ giữa các bảng.
+- Tạo cơ sở dữ liệu ban đầu với tên **shoeshop** trên MySQL.
+- Tạo bảng mẫu và thử truy vấn dữ liệu bằng phpMyAdmin.
+
+---
+
+### 4. Chuẩn bị cấu trúc dự án web
+- Khởi tạo thư mục chính của dự án PHP:  
+  - `index.php` (trang chủ)  
+  - `config/` (cấu hình database)  
+  - `includes/` (các file header/footer)  
+  - `admin/` (giao diện quản trị)  
+  - `assets/` (hình ảnh, CSS, JS)
+- Tạo file `config.php` để lưu thông tin kết nối MySQL:
+```php
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "shoeshop";
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+?>
