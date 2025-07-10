@@ -1,0 +1,51 @@
+# BÁO CÁO TIẾN ĐỘ - TUẦN 02
+
+## Thông tin chung
+- **Họ tên sinh viên:** Hoàng Long  
+- **Lớp:** DX22TT5  
+- **Tên đồ án:** Xây dựng website bán giày  
+- **Tuần:** 02 (Từ ngày 04/07/2025 đến 10/07/2025)
+
+---
+
+## Nội dung công việc đã thực hiện
+
+### 1. Xây dựng chức năng quản lý sản phẩm (CRUD)
+- Thiết kế giao diện **danh sách sản phẩm** cho admin với bảng dữ liệu: tên, giá, hình ảnh, thao tác (Sửa/Xóa).
+- Tạo trang **thêm sản phẩm** với form nhập thông tin và upload ảnh.
+- Xử lý chức năng **chỉnh sửa sản phẩm** dựa theo `product_id`, điền sẵn dữ liệu cũ vào form.
+- Thêm chức năng **xoá sản phẩm**, có xác nhận SweetAlert2.
+- Kết nối tất cả các chức năng thông qua file PHP và thao tác trực tiếp với CSDL (`products`).
+- Thêm xác thực quyền **admin** để đảm bảo chỉ admin truy cập được.
+
+---
+
+### 2. Hiển thị sản phẩm ra giao diện người dùng
+- Viết mã PHP để lấy danh sách sản phẩm từ bảng `products`.
+- Hiển thị sản phẩm dạng **lưới (card)** có ảnh, tên, giá, nút xem chi tiết.
+- Thêm nút **“🛒 Thêm vào giỏ”** dùng Ajax (POST) để lưu vào bảng `order_items`.
+- Thêm nút **“🛍 Mua ngay”** chuyển đến trang `cart.php` với sản phẩm đã chọn.
+
+---
+
+### 3. Tích hợp SweetAlert2 và cải tiến giao diện
+- Thêm thư viện **SweetAlert2** qua CDN để hiển thị popup xác nhận khi xoá, thông báo thành công/thất bại.
+- Cập nhật giao diện quản trị sản phẩm với **Bootstrap 5** và CSS tùy chỉnh.
+- Tạo hiệu ứng hover card, shadow và điều chỉnh bố cục thân thiện người dùng.
+
+---
+
+### 4. Kiểm thử và xử lý lỗi
+- Kiểm thử các thao tác CRUD sản phẩm: thêm/sửa/xoá nhiều lần, kiểm tra ảnh không hợp lệ.
+- Sửa lỗi không phân biệt quyền truy cập admin → thêm phân quyền bằng `$_SESSION['role']`.
+- Sửa lỗi JSON trả về không hợp lệ trong Ajax khi thêm vào giỏ.
+- Sửa lỗi không load được danh sách sản phẩm nếu chưa đăng nhập → xử lý session rõ ràng.
+
+---
+
+## Kết quả đạt được
+- Chức năng quản lý sản phẩm cho admin hoàn thiện (CRUD đầy đủ).
+- Giao diện hiển thị sản phẩm người dùng đã hoạt động.
+- Tích hợp được SweetAlert2, cải thiện trải nghiệm người dùng.
+- Chuẩn bị sẵn giao diện điều hướng cho các chức năng tuần tiếp theo: giỏ hàng, thanh toán, thống kê.
+

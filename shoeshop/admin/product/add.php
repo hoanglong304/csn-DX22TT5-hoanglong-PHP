@@ -1,37 +1,44 @@
 <?php
-include '../../includes/db.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $desc = $_POST['description'];
-  $image = $_FILES['image']['name'];
-  move_uploaded_file($_FILES['image']['tmp_name'], "../../uploads/" . $image);
-
-  $conn->query("INSERT INTO products(name, price, description, image) VALUES('$name', '$price', '$desc', '$image')");
-  header("Location: list.php");
+session_start();
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: ../../index.php");
+    exit;
 }
-include '../../includes/header.php';
+include '../../includes/db.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $price = intval($_POST['price']);
+    $image = $_FILES['image']['name'];
+
+    move_uploaded_file($_FILES['image']['tmp_name'], "../../assets/images/Product/$image");
+
+    $stmt = $conn->prepare("INSERT INTO products (name, price, image) VALUES (?, ?, ?)");
+    $stmt->bind_param("sis", $name, $price, $image);
+    $stmt->execute();
+    header("Location: list.php");
+    exit;
+}
 ?>
 
-<h2>Thêm sản phẩm mới</h2>
-<form method="post" enctype="multipart/form-data" class="w-50">
-  <div class="mb-3">
-    <label class="form-label">Tên sản phẩm</label>
-    <input name="name" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Giá</label>
-    <input name="price" type="number" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Mô tả</label>
-    <textarea name="description" class="form-control" rows="3"></textarea>
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Ảnh</label>
-    <input type="file" name="image" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-success">Lưu sản phẩm</button>
-</form>
-
+<?php include '../../includes/header.php'; ?>
+<div class="container mt-5">
+    <h2>➕ Thêm sản phẩm</h2>
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>Tên sản phẩm</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Giá</label>
+            <input type="number" name="price" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Ảnh</label>
+            <input type="file" name="image" class="form-control" required>
+        </div>
+        <button class="btn btn-primary">Lưu</button>
+        <a href="list.php" class="btn btn-secondary">Quay lại</a>
+    </form>
+</div>
 <?php include '../../includes/footer.php'; ?>

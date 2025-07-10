@@ -49,7 +49,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "";
+$pass = "long304";
 $db = "shoeshop";
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {

@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 ?>
 <div class="row">
   <div class="col-md-5">
-    <img src="uploads/<?= $row['image'] ?>" class="img-fluid rounded" alt="<?= $row['name'] ?>">
+    <img src="assets/images/product/<?= $row['image'] ?>" class="img-fluid rounded" alt="<?= $row['name'] ?>">
   </div>
   <div class="col-md-7">
     <h2><?= $row['name'] ?></h2>
