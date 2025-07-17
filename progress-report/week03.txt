@@ -1,0 +1,69 @@
+# BÁO CÁO TIẾN ĐỘ - TUẦN 03
+
+## Thông tin chung
+- **Họ tên sinh viên:** Hoàng Long  
+- **Lớp:** DX22TT5  
+- **Tên đồ án:** Xây dựng website bán giày  
+- **Tuần:** 03 (Từ ngày 11/07/2025 đến 17/07/2025)
+
+---
+Nội dung công việc đã thực hiện
+
+1. Chức năng tìm kiếm sản phẩm
+Thiết kế thanh tìm kiếm trên trang chủ để người dùng nhập từ khóa.
+
+Xử lý tìm kiếm theo tên sản phẩm với câu truy vấn LIKE trong MySQL.
+
+Hiển thị kết quả tìm được với định dạng giống giao diện sản phẩm bình thường.
+
+Bổ sung xử lý nếu không tìm thấy sản phẩm → hiện thông báo phù hợp.
+
+2. Xây dựng chức năng giỏ hàng
+Cập nhật giỏ hàng để lưu theo user_id trong CSDL, không còn dùng session.
+
+Mỗi người dùng có thể thêm nhiều sản phẩm, cập nhật số lượng, xoá từng món trong giỏ.
+
+Hiển thị tổng tiền và các sản phẩm đã chọn trong cart.php.
+
+Cập nhật biểu tượng giỏ hàng trên header với tổng số sản phẩm động theo người dùng.
+
+3. Xử lý đặt hàng (checkout)
+Khi người dùng nhấn “Đặt hàng”, hệ thống:
+
+Tạo đơn hàng mới trong bảng orders (lưu user_id, thời gian tạo, trạng thái…).
+
+Lưu chi tiết đơn hàng vào bảng order_items với product_id, quantity, price.
+
+Xoá các sản phẩm đã đặt khỏi giỏ hàng.
+
+Hiển thị trang xác nhận đặt hàng thành công và nút “Xem đơn hàng”.
+
+4. Quản lý đơn hàng theo người dùng
+Tạo trang orders.php hiển thị danh sách đơn hàng của người dùng hiện tại.
+
+Mỗi đơn hàng hiển thị: mã đơn, ngày đặt, trạng thái, và danh sách sản phẩm đã đặt.
+
+Xử lý truy vấn kết hợp orders, order_items, products để lấy thông tin đầy đủ.
+
+Trang được bảo vệ bằng session đăng nhập.
+
+5. Phân quyền người dùng
+Xây dựng hệ thống phân quyền dựa trên trường role (admin/user).
+
+Chỉ người dùng có role = admin mới truy cập được các trang quản trị sản phẩm, thống kê.
+
+Ngăn người dùng không hợp lệ truy cập vào các đường dẫn nhạy cảm (bằng $_SESSION['role']).
+
+Cập nhật lại phần login để lưu vai trò người dùng sau khi đăng nhập.
+
+Kết quả đạt được
+Hoàn thiện hệ thống giỏ hàng lưu theo CSDL, tách riêng từng người dùng.
+
+Tích hợp chức năng đặt hàng hoàn chỉnh, xử lý lưu đơn và hiển thị lịch sử mua hàng.
+
+Đã thực hiện xong chức năng tìm kiếm sản phẩm theo tên.
+
+Áp dụng phân quyền giữa admin và user, nâng cao tính bảo mật.
+
+Chuẩn bị nền tảng cho tuần tiếp theo: chức năng thống kê, quản lý đơn hàng từ phía admin.
+

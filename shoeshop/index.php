@@ -70,7 +70,6 @@ $result = $conn->query($sql);
 </style>
 
 
-<!-- AJAX thêm vào giỏ -->
 <script>
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -88,18 +87,49 @@ $result = $conn->query($sql);
           try {
             const data = JSON.parse(text);
             if (data.success) {
-              alert('✅ Đã thêm vào giỏ hàng!');
+              // ✅ Thành công
+              Swal.fire({
+                icon: 'success',
+                title: 'Đã thêm vào giỏ hàng!',
+                text: data.message || 'Sản phẩm đã được thêm.',
+                showConfirmButton: false,
+                timer: 1500,
+                toast: true,
+                position: 'bottom-end'
+              });
+
+              // Cập nhật số lượng giỏ
               const cartIcon = document.querySelector('#cart-count');
               if (cartIcon) cartIcon.textContent = data.total;
             } else {
-              alert('❌ ' + (data.message || 'Lỗi thêm vào giỏ hàng.'));
+              // ❌ Thất bại có message
+              Swal.fire({
+                icon: 'error',
+                title: 'Không thể thêm vào giỏ',
+                text: data.message || 'Đã xảy ra lỗi không xác định.'
+              });
             }
           } catch (e) {
-            console.error("Lỗi phân tích JSON:", text);
-            alert("❌ Lỗi máy chủ không trả dữ liệu hợp lệ!");
+            console.error("Lỗi JSON:", text);
+            // ❌ Lỗi máy chủ
+            Swal.fire({
+              icon: 'error',
+              title: 'Lỗi máy chủ!',
+              text: 'Dữ liệu phản hồi không hợp lệ.'
+            });
           }
+        })
+        .catch(err => {
+          // ❌ Lỗi kết nối
+          Swal.fire({
+            icon: 'error',
+            title: 'Lỗi mạng!',
+            text: 'Không thể kết nối tới máy chủ. Hãy thử lại sau.'
+          });
+          console.error('Lỗi fetch:', err);
         });
     });
   });
 </script>
+
 <?php include 'includes/footer.php'; ?>
