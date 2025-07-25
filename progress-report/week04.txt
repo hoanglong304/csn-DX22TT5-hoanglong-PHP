@@ -1,0 +1,61 @@
+# BÁO CÁO TIẾN ĐỘ - TUẦN 04
+
+## Thông tin chung
+- **Họ tên sinh viên:** Hoàng Long  
+- **Lớp:** DX22TT5  
+- **Tên đồ án:** Xây dựng website bán giày  
+- **Tuần:** 04 (Từ ngày 18/07/2025 đến 25/07/2025)
+
+---
+Nội dung công việc đã thực hiện
+
+Kiểm thử chức năng mua hàng và đặt hàng
+
+Thực hiện kiểm thử luồng mua hàng hoàn chỉnh: từ thêm vào giỏ → thanh toán → kiểm tra đơn hàng.
+
+Kiểm tra xử lý các trường hợp đặc biệt: đặt hàng không đăng nhập, đặt hàng với giỏ trống, sản phẩm không còn hàng.
+
+Đảm bảo dữ liệu được lưu đúng vào bảng orders và order_items.
+
+Kiểm tra chức năng huỷ đơn hàng và hiển thị trạng thái đơn.
+
+Kiểm thử giao diện người dùng
+
+Kiểm tra tương thích giao diện trên các kích thước màn hình (PC, tablet, mobile).
+
+Sửa lỗi hiển thị sản phẩm bị vỡ layout khi tên quá dài hoặc hình ảnh lỗi.
+
+Điều chỉnh màu sắc, bố cục, font chữ để đảm bảo đồng bộ và dễ nhìn.
+
+Kiểm thử chức năng sản phẩm
+
+Kiểm tra các thao tác CRUD sản phẩm từ phía admin: thêm, sửa, xoá.
+
+Đảm bảo các sản phẩm hiển thị đúng phân loại, thương hiệu, size.
+
+Sửa lỗi trùng tên sản phẩm hoặc thiếu ảnh khi upload.
+
+Sửa lỗi và tinh chỉnh hệ thống
+
+Sửa các lỗi nhỏ liên quan đến logic đặt hàng, cập nhật số lượng sản phẩm trong giỏ.
+
+Cải thiện tốc độ truy vấn và xử lý dữ liệu ở các trang có nhiều bảng liên quan.
+
+Tối ưu code PHP, giảm trùng lặp, đảm bảo dễ bảo trì sau này.
+
+Hoàn thiện và đóng gói đồ án
+
+Rà soát toàn bộ hệ thống, hoàn chỉnh các tính năng đã xây dựng.
+
+Viết README hướng dẫn sử dụng, chuẩn bị dữ liệu mẫu và video demo nếu cần.
+
+Chuẩn bị nội dung báo cáo thuyết trình: chức năng chính, cơ sở dữ liệu, phân quyền, điểm nổi bật.
+
+Kết quả đạt được
+Hệ thống hoạt động ổn định sau kiểm thử, đảm bảo tính đầy đủ và logic trong quy trình mua hàng.
+
+Giao diện hoàn thiện, thân thiện người dùng, tương thích đa nền tảng.
+
+Toàn bộ các chức năng chính đã được triển khai và kiểm thử kỹ.
+
+Đồ án đã được hoàn thiện, sẵn sàng cho phần báo cáo và đánh giá cuối kỳ.

@@ -1,19 +1,27 @@
 <?php
 include 'includes/db.php';
 include 'includes/header.php';
-
 $search = $_GET['search'] ?? '';
-$sql = "SELECT * FROM products";
+$sql = "
+  SELECT p.*, c.name AS category_name, b.name AS brand_name, s.size_label
+  FROM products p
+  LEFT JOIN category c ON p.category_id = c.id
+  LEFT JOIN brand b ON p.brand_id = b.id
+  LEFT JOIN product_size s ON p.size_id = s.id
+";
+
 if ($search != '') {
-  $sql .= " WHERE name LIKE '%" . $conn->real_escape_string($search) . "%'";
+  $escaped = $conn->real_escape_string($search);
+  $sql .= " WHERE (p.name LIKE '%$escaped%' OR b.name LIKE '%$escaped%')";
 }
-$sql .= " ORDER BY id DESC LIMIT 12";
+$sql .= " ORDER BY p.id DESC LIMIT 12";
+
 $result = $conn->query($sql);
 ?>
 
 <!-- Banner -->
 <div class="container-fluid p-0 mb-5">
-  <img src="assets/images/Banner/banner-top.jpg" class="img-fluid w-100" style="max-height: 450px; object-fit: cover;" alt="Banner">
+  <img src="assets/images/Banner/banner-top.jpg" class="img-fluid w-100" style="object-fit: cover;" alt="Banner">
 </div>
 
 <!-- Thanh tìm kiếm -->
@@ -38,6 +46,10 @@ $result = $conn->query($sql);
           <div class="card-body text-center">
             <h5 class="card-title"><?= htmlspecialchars($row['name']) ?></h5>
             <p class="card-text text-danger fw-bold"><?= number_format($row['price'], 0) ?> đ</p>
+
+            <!-- Thông tin mở rộng -->
+            <p class="small text-muted mb-1">🏷 <?= $row['brand_name'] ?> | 👟 <?= $row['category_name'] ?> | 📏 Size: <?= $row['size_label'] ?></p>
+
             <a href="product.php?id=<?= $row['id'] ?>" class="btn btn-outline-primary btn-sm mb-2">Xem chi tiết</a>
 
             <!-- Nút Thêm vào giỏ hàng (AJAX) -->
@@ -69,7 +81,7 @@ $result = $conn->query($sql);
   }
 </style>
 
-
+<!-- JavaScript xử lý giỏ hàng -->
 <script>
   document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -87,7 +99,6 @@ $result = $conn->query($sql);
           try {
             const data = JSON.parse(text);
             if (data.success) {
-              // ✅ Thành công
               Swal.fire({
                 icon: 'success',
                 title: 'Đã thêm vào giỏ hàng!',
@@ -98,11 +109,9 @@ $result = $conn->query($sql);
                 position: 'bottom-end'
               });
 
-              // Cập nhật số lượng giỏ
               const cartIcon = document.querySelector('#cart-count');
               if (cartIcon) cartIcon.textContent = data.total;
             } else {
-              // ❌ Thất bại có message
               Swal.fire({
                 icon: 'error',
                 title: 'Không thể thêm vào giỏ',
@@ -111,7 +120,6 @@ $result = $conn->query($sql);
             }
           } catch (e) {
             console.error("Lỗi JSON:", text);
-            // ❌ Lỗi máy chủ
             Swal.fire({
               icon: 'error',
               title: 'Lỗi máy chủ!',
@@ -120,13 +128,39 @@ $result = $conn->query($sql);
           }
         })
         .catch(err => {
-          // ❌ Lỗi kết nối
           Swal.fire({
             icon: 'error',
             title: 'Lỗi mạng!',
             text: 'Không thể kết nối tới máy chủ. Hãy thử lại sau.'
           });
-          console.error('Lỗi fetch:', err);
+        });
+    });
+  });
+
+  document.querySelectorAll('form[action="add_to_order.php"]').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch('add_to_order.php', {
+          method: 'POST',
+          body: new URLSearchParams(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.redirect) {
+            window.location.href = data.redirect;
+          } else if (data.redirect) {
+            Swal.fire('Vui lòng đăng nhập!', '', 'warning').then(() => {
+              window.location.href = data.redirect;
+            });
+          } else {
+            Swal.fire('Lỗi!', data.message || 'Không thể mua hàng.', 'error');
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          Swal.fire('Lỗi kết nối!', 'Vui lòng thử lại sau.', 'error');
         });
     });
   });

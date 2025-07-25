@@ -62,4 +62,4 @@ if (isset($_SESSION['user_id'])) {
     </div>
   </nav>
 
-  <main class="container" style="margin-top: 60px;">
+  <main style="margin-top: 55px;">
